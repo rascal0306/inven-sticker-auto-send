@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "인벤 스티커 자동 선물기",
+  "version": "3.1",
+  "permissions": [
+    "tabs",
+    "scripting",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://www.inven.co.kr/*",
+    "*://m.inven.co.kr/*",
+    "*://imart.inven.co.kr/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "스티커 번호 설정"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.inven.co.kr/board/*",
+        "*://m.inven.co.kr/board/*"
+      ],
+      "js": ["content_board.js"]
+    },
+    {
+      "matches": ["*://imart.inven.co.kr/shop/sticker/*"],
+      "js": ["content_shop.js"]
+    }
+  ]
+}
